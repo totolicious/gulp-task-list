@@ -1,7 +1,7 @@
-gulp-task-list
+[gulp](http://gulpjs.com)-task-list
 ==============
 
-gulp-task-list is a gulp task that lists all tasks in gulpfile.js along with their comments.
+gulp-task-list is a [gulp](http://gulpjs.com) task that lists all tasks in gulpfile.js along with their comments.
 
     
 gulpfile.js
