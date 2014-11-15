@@ -1,6 +1,6 @@
 {
   "name": "gulp-task-list",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Lists gulp tasks and their comments",
   "main": "index.js",
   "repository": {
