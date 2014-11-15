@@ -20,7 +20,7 @@
   "homepage": "https://github.com/totolicious/gulp-task-list",
   "dependencies": {
     "graceful-fs": "~3.0.2",
-    "grunt-util": "~0.5.2",
-    "cli-table": "~0.3.0"
+    "cli-table": "~0.3.0",
+    "gulp-util": "^3.0.1"
   }
 }
