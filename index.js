@@ -7,7 +7,7 @@ var fs = require('graceful-fs'),
 
 module.exports = function(gulp) {
     gulp.task('task-list', function() {
-        var gulpfileCode = fs.readFileSync('gulpfile.js').toString(),
+        var gulpfileCode = fs.readFileSync(/[^\\/]+$/.exec(__filename)[0]).toString(),
             table = new clitable({
                 head: ['Task name', 'Description', 'Dependencies'],
                 chars: {
