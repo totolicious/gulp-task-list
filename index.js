@@ -5,7 +5,10 @@ var fs = require('graceful-fs'),
     gutil = require('gulp-util'),
     clitable = require('cli-table');
 
-module.exports = function(gulp) {
+module.exports = function(gulp, ignoreTasks) {
+    if (Object.prototype.toString.call(ignoreTasks) !== '[object Array]') {
+      ignoreTasks = [];
+    }
     gulp.task('task-list', function() {
         var gulpfileCode = fs.readFileSync('gulpfile.js').toString(),
             table = new clitable({
@@ -23,8 +26,10 @@ module.exports = function(gulp) {
             comment,
             deps;
 
-
         for (taskName in gulp.tasks) {
+            if (-1 !== ignoreTasks.indexOf(taskName)) {
+              continue;
+            }
             if (gulp.tasks.hasOwnProperty(taskName)) {
                 start = gulpfileCode.lastIndexOf("//", gulpfileCode.indexOf(gulp.tasks[taskName].fn.toString()));
                 end = gulpfileCode.indexOf('\n', start);
