@@ -31,7 +31,7 @@ module.exports = function(gulp, ignoreTasks) {
               continue;
             }
             if (gulp.tasks.hasOwnProperty(taskName)) {
-                start = gulpfileCode.lastIndexOf("//", gulpfileCode.indexOf(gulp.tasks[taskName].fn.toString()));
+                start = gulpfileCode.lastIndexOf("//", gulpfileCode.indexOf(taskName));
                 end = gulpfileCode.indexOf('\n', start);
                 if (start !== -1 && end !== -1) {
                     start += 2;
