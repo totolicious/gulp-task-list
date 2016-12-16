@@ -5,13 +5,13 @@ var fs = require('graceful-fs'),
     gutil = require('gulp-util'),
     clitable = require('cli-table');
 
-module.exports = function(gulp, ignoreTasks) {
+module.exports = function(gulp, ignoreTasks, files) {
     if (Object.prototype.toString.call(ignoreTasks) !== '[object Array]') {
       ignoreTasks = [];
     }
     gulp.task('task-list', function() {
-        var gulpfileCode = fs.readFileSync(/[^\\/]+$/.exec(__filename)[0]).toString(),
-            table = new clitable({
+        var gulpfileCode = (files && files.length > 0) ? getCodeFromFiles(files) : fs.readFileSync('gulpfile.js').toString();
+        var table = new clitable({
                 head: ['Task name', 'Description', 'Dependencies'],
                 chars: {
                     'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': '',
@@ -48,3 +48,11 @@ module.exports = function(gulp, ignoreTasks) {
         console.log(table.toString());
     });
 };
+
+function getCodeFromFiles(files) {
+    var code = '';
+    files.forEach(function(file) {
+         code += fs.readFileSync(file).toString();
+    });
+    return code;
+}
