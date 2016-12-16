@@ -3,16 +3,16 @@
 
 gulp-task-list is a [gulp](http://gulpjs.com) task that lists all tasks in gulpfile.js along with their comments.
 
-    
+
 gulpfile.js
 -----------
 
 ```javascript
 
     var gulp = require('gulp');
-    
+
     require('gulp-task-list')(gulp);
-    
+
     // this task is a dummy task
     gulp.task('some-task', function() {
         console.log('this is some-task');
@@ -52,6 +52,28 @@ Ignore a task to be displayed
         console.log('This task is private');
     });
 ```
+
+
+Explicitly describe files to be crawled for documentation
+-----------------------------
+
+```javascript
+
+    var gulp = require('gulp');
+
+    // array of files to be used for gulp tasks
+    var files = [
+        __filename,
+        'tests/gulp-tasks.js',
+        'gulp-tasks/prod.js',
+        'gulp-tasks/dev.js',
+        'gulp-tasks/infra.js',
+        'gulp-tasks/common.js'
+    ];
+
+    require('gulp-task-list')(gulp, null, files);
+```
+
 command line
 ------------
 

@@ -48,3 +48,11 @@ module.exports = function(gulp, ignoreTasks, files) {
         console.log(table.toString());
     });
 };
+
+function getCodeFromFiles(files) {
+    var codes = [];
+    files.forEach(function(file) {
+        codes.push(fs.readFileSync(file).toString());
+    });
+    return codes.join('\n');
+}
