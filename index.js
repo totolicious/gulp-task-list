@@ -24,14 +24,23 @@ module.exports = function(gulp, ignoreTasks, files) {
             start,
             end,
             comment,
-            deps;
+            deps,
+            regex,
+            fnPos;
 
         for (taskName in gulp.tasks) {
             if (-1 !== ignoreTasks.indexOf(taskName)) {
               continue;
             }
             if (gulp.tasks.hasOwnProperty(taskName)) {
-                start = gulpfileCode.lastIndexOf("//", gulpfileCode.indexOf(gulp.tasks[taskName].fn.toString()));
+                if(taskName == 'task-list') continue;
+
+                regex = 'gulp\\.task\\s*\\(\\s*[\\\'"]' + taskName + '[\\\'"]';
+                fnPos = gulpfileCode.search(new RegExp(regex));
+
+                if(fnPos == -1) continue;
+
+                start = gulpfileCode.lastIndexOf("//", fnPos);
                 end = gulpfileCode.indexOf('\n', start);
                 if (start !== -1 && end !== -1) {
                     start += 2;
